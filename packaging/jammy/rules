@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+
+override_dh_install:
+	doxygen
+	find doc/man/man3 -type f ! -name 'aln*' -exec rm -f {} \;
+	install -d $(CURDIR)/debian/tmp/usr/share/man/man3
+	install -m 644 doc/man/man3/* $(CURDIR)/debian/tmp/usr/share/man/man3/
+	dh_install
+
+override_dh_strip:
+	dh_strip -plibaln0 --dbg-package=libaln0-dbg
+	dh_strip -paln --dbg-package=aln-dbg

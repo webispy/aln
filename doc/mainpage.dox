@@ -1,0 +1,58 @@
+/**
+ * @mainpage Amazing Lucky Numbers Library
+ *
+ * @section intro_sec Introduction
+ *
+ * The Amazing Lucky Numbers (ALN) Library provides a set of functions to generate and manage lucky numbers.
+ * It offers an easy-to-use API to create, draw, and retrieve lucky numbers, ensuring flexibility and customization
+ * for various lucky number generation needs.
+ *
+ * @section features_sec Features
+ * - Generate a specified number of lucky numbers within a given range.
+ * - Option to allow or disallow repeated numbers.
+ * - Draw numbers individually or all at once.
+ * - Retrieve specific numbers by their index.
+ * - Reset the generator to draw numbers again.
+ *
+ * @section usage_sec Usage
+ *
+ * Below is a simple example demonstrating how to use the ALN library.
+ *
+ * @code
+ * #include "aln.h"
+ * #include <stdio.h>
+ *
+ * int main() {
+ *     ALN *aln = aln_new(6, 1, 46, 0);
+ *     if (!aln) {
+ *         fprintf(stderr, "Failed to create ALN instance\n");
+ *         return 1;
+ *     }
+ *
+ *     if (aln_draw_all(aln) != 0) {
+ *         fprintf(stderr, "Failed to draw all numbers\n");
+ *         aln_free(aln);
+ *         return 1;
+ *     }
+ *
+ *     for (unsigned int i = 0; i < 6; i++) {
+ *         printf("Number %u: %u\n", i + 1, aln_get_number(aln, i));
+ *     }
+ *
+ *     aln_free(aln);
+ *     return 0;
+ * }
+ * @endcode
+ *
+ * @section install_sec Installation
+ *
+ * To use the ALN library, include the `aln.h` header file in your project and link against the ALN library.
+ *
+ * @section license_sec License
+ *
+ * This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+ *
+ * @section authors_sec Authors
+ *
+ * - Inho Oh <webispy@gmail.com>
+ */

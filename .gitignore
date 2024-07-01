@@ -50,3 +50,31 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Temporary directories
+build
+redhat-linux-build/
+out
+.cache
+.DS_Store
+
+# Doxygen
+doc/html
+doc/latex
+doc/man
+
+# Debian package
+debian
+obj-x86_64-linux-gnu/
+obj-arm-linux-gnu/
+obj-aarch64-linux-gnu/
+packaging/*/*.log
+packaging/*/*.substvars
+packaging/*/*-stamp
+packaging/*/files
+packaging/*/.debhelper/
+packaging/*/aln/
+packaging/*/aln-dbg/
+packaging/*/libaln/
+packaging/*/libaln-dev/
+packaging/*/tmp/

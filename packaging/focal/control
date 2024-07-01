@@ -1,0 +1,44 @@
+Source: aln
+Section: libs
+Priority: optional
+Maintainer: Inho Oh <webispy@gmail.com>
+Build-Depends: debhelper (>= 12), cmake, libglib2.0-dev, doxygen
+Standards-Version: 4.1.4
+Homepage: https://github.com/webispy/aln
+X-Python3-Version: >= 3.6
+
+Package: libaln0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libglib2.0-0
+Description: Amazing Lucky Numbers Library
+ A library for generating amazing lucky numbers.
+
+Package: libaln-dev
+Architecture: any
+Section: libdevel
+Depends: ${shlibs:Depends}, ${misc:Depends}, libaln0, libglib2.0-dev
+Description: Amazing Lucky Numbers Library (development files)
+ A library for generating amazing lucky numbers.
+
+Package: libaln0-dbg
+Section: debug
+Priority: optional
+Architecture: any
+Depends: libaln0 (= ${binary:Version}), aln (= ${binary:Version}), ${misc:Depends}
+Description: Debugging symbols for libaln0
+ This package contains the debugging symbols for the aln library.
+
+Package: aln
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libaln0, libglib2.0-0
+Description: Amazing Lucky Numbers Tool
+ Command line tool for generating and using amazing lucky numbers.
+ This package contains the aln command line tool that utilizes the aln library.
+
+Package: aln-dbg
+Section: debug
+Priority: optional
+Architecture: any
+Depends: aln (= ${binary:Version}), ${misc:Depends}
+Description: Debugging symbols for aln
+ This package contains the debugging symbols for the aln tool.

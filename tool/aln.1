@@ -1,0 +1,58 @@
+.TH ALN 1 "July 2024" "1.0" "Amazing Lucky Number Generator"
+.SH NAME
+aln \- a lucky number generator application
+
+.SH SYNOPSIS
+.B aln
+.RI [ options ]
+
+.SH DESCRIPTION
+.B aln
+is a command-line application that generates lucky numbers based on the provided options. You can specify the count of numbers, their minimum and maximum values, whether to allow duplicates, and the number of iterations to run the generator.
+
+.SH OPTIONS
+.TP
+.BI \-c ", --count=" COUNT
+The number of lucky numbers to generate. Default is 
+.B 6.
+
+.TP
+.BI \-n ", --min=" MIN
+The minimum value a generated number can be. Default is 
+.B 1.
+
+.TP
+.BI \-x ", --max=" MAX
+The maximum value a generated number can be. Default is 
+.B 46.
+
+.TP
+.B \-r ", --allow_repeat"
+Allows duplicate numbers.
+
+.TP
+.BI \-i ", --iterations=" ITERATIONS
+The number of times to run the lucky generation. Default is 
+.B 1.
+
+.SH EXAMPLES
+.TP
+Generate 6 lucky numbers with the default minimum and maximum values:
+.B aln
+
+.TP
+Generate 10 lucky numbers with a minimum value of 5 and a maximum value of 50:
+.B aln \-c 10 \-n 5 \-x 50
+
+.TP
+Generate 5 lucky numbers without duplicates, repeating the generation 3 times:
+.B aln \-c 5 \-r \-i 3
+
+.SH AUTHOR
+Written by Inho Oh.
+
+.SH REPORTING BUGS
+Report bugs to <webispy@gmail.com>.
+
+.SH COPYRIGHT
+This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

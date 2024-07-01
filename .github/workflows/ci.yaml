@@ -1,0 +1,245 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  clang_format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+      - run: sudo apt install -y clang-format
+      - run: clang-format --dry-run --Werror src/*.c tool/*.c tests/*.c include/*.h
+
+  clang_tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+      - run: sudo apt install -y clang-tidy libglib2.0-dev
+      - run: cmake -DCMAKE_INSTALL_PREFIX=/usr -S . -B build
+      - run: clang-tidy -p build src/*.c tool/*.c tests/*.c
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [clang_format, clang_tidy]
+    env:
+      TARGETDIR: out
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+      - run: sudo apt install -y libglib2.0-dev doxygen
+      - run: cmake -DCMAKE_INSTALL_PREFIX=/usr -S . -B build
+      - run: cmake --build build --parallel -v
+      - run: make test
+        working-directory: build
+      - run: DESTDIR=${{ env.TARGETDIR }} cmake --install build
+      - run: mkdir -p ${{ env.TARGETDIR }}/usr/share/man/man3
+      - run: doxygen
+      - run: cp doc/man/man3/aln* ${{ env.TARGETDIR }}/usr/share/man/man3/
+      - name: Summary
+        working-directory: ${{ env.TARGETDIR }}
+        run: |
+          echo "#### files" >> $GITHUB_STEP_SUMMARY
+          echo "<pre>$(tree .)</pre>" >> $GITHUB_STEP_SUMMARY
+      - name: Build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: files
+          path: ${{ env.TARGETDIR }}
+
+  test_deb_gbp:
+    runs-on: ubuntu-latest
+    needs: [clang_format, clang_tidy]
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          path: src
+      - run: sudo apt install -y libglib2.0-dev doxygen git-buildpackage debhelper cmake
+      - run: echo "DISTRO_NAME=$(lsb_release -c | awk '{print $2}')" >> $GITHUB_ENV
+      - run: cp -a packaging/$DISTRO_NAME debian
+        working-directory: src
+      - run: gbp buildpackage -uc -us
+        working-directory: src
+      - run: tree
+
+  test_rpm_rpmbuild:
+    runs-on: ubuntu-latest
+    needs: [clang_format, clang_tidy]
+    container:
+      image: fedora:latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - run: dnf update -y
+      - run: dnf install -y rpm-build dnf-plugins-core
+      - run: dnf builddep -y packaging/aln.spec
+      - run: rpmbuild -bb --build-in-place packaging/aln.spec
+      - run: ls -l $HOME/rpmbuild/RPMS/x86_64/*.rpm
+
+  ubuntu_sbuild:
+    runs-on: ubuntu-latest
+    needs: [build]
+    strategy:
+      matrix:
+        dist: [jammy, focal]
+        host: [armhf, arm64, amd64]
+      fail-fast: false
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          path: src
+      - run: cp -a packaging/${{ matrix.dist }} debian
+        working-directory: src
+      - run: sudo apt update
+      - run: sudo apt install -y sbuild ubuntu-dev-tools debhelper
+      - run: sudo sbuild-adduser $USER
+      - name: Setup tmpfs overlay
+        run: |
+          cat <<EOF > 04tmpfs
+          #!/bin/sh
+
+          set -e
+
+          . "\$SETUP_DATA_DIR/common-data"
+          . "\$SETUP_DATA_DIR/common-functions"
+          . "\$SETUP_DATA_DIR/common-config"
+
+          if [ "\$STAGE" = "setup-start" ]; then
+            mount -t tmpfs overlay /var/lib/schroot/union/overlay
+          elif [ "\$STAGE" = "setup-recover" ]; then
+            mount -t tmpfs overlay /var/lib/schroot/union/overlay
+          elif [ "\$STAGE" = "setup-stop" ]; then
+            umount -f /var/lib/schroot/union/overlay
+          fi
+          EOF
+
+          chmod +x 04tmpfs
+          sudo mv 04tmpfs /etc/schroot/setup.d/
+      - name: Make chroot env with cross-compile
+        if: ${{ matrix.host != 'amd64' }}
+        run: |
+          echo "CHROOT=${{ matrix.dist }}-amd64-${{ matrix.host }}" >> $GITHUB_ENV
+          sg sbuild -c 'mk-sbuild --target ${{ matrix.host }} ${{ matrix.dist }}'
+      - name: Make chroot env
+        if: ${{ matrix.host == 'amd64' }}
+        run: |
+          echo "CHROOT=${{ matrix.dist }}-${{ matrix.host }}" >> $GITHUB_ENV
+          sg sbuild -c 'mk-sbuild ${{ matrix.dist }}'
+      - run: sudo sbuild-update --upgrade $CHROOT
+      - run: sg sbuild -c 'sbuild --chroot $CHROOT --host ${{ matrix.host }}'
+        working-directory: src
+      - run: ls -l
+      - run: echo "<pre>$(find . -maxdepth 1 -name "*.deb" -type f -printf "%s %f\n")</pre>" >> $GITHUB_STEP_SUMMARY
+      - name: Build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-${{ matrix.dist }}-${{ matrix.host }}
+          path: ./*.deb
+
+  fedora_mock:
+    runs-on: ubuntu-latest
+    needs: [build]
+    strategy:
+      matrix:
+        version: [39, 40]
+        host: [x86_64]
+    container:
+      image: fedora:${{ matrix.version }}
+      volumes:
+        - /var/lib/mock
+      options: --privileged
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          path: aln
+      - run: tar cvfz aln.tar.gz aln
+      - run: dnf update -y
+      - run: dnf install -y rpm-build dnf-plugins-core mock fuse-overlayfs
+      - name: Fix podman
+        run: |
+          mkdir -p ~/.config/containers
+          cat <<EOF > ~/.config/containers/storage.conf
+          [storage]
+          driver = "overlay"
+          [storage.options]
+          mount_program = "/usr/bin/fuse-overlayfs"
+          EOF
+      - run: mock -r fedora-${{ matrix.version }}-${{ matrix.host }} --init
+      - run: mock -r fedora-${{ matrix.version }}-${{ matrix.host }} --spec=aln/packaging/aln.spec --sources=. --resultdir=. --buildsrpm
+      - run: mock -r fedora-${{ matrix.version }}-${{ matrix.host }} --resultdir=. --rebuild aln-*.src.rpm
+      - run: echo "<pre>$(find . -maxdepth 1 -name "*.rpm" -type f -printf "%s %f\n")</pre>" >> $GITHUB_STEP_SUMMARY
+      - name: Genereate repo
+        run: |
+          mkdir -p fedora/${{ matrix.version }}
+          mv *.rpm fedora/${{ matrix.version }}/
+          createrepo fedora/${{ matrix.version }}
+      - name: Build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpm-fedora-${{ matrix.version }}-${{ matrix.host }}
+          path: fedora/*
+
+  gh_pages:
+    runs-on: ubuntu-latest
+    needs: [ubuntu_sbuild, fedora_mock]
+    if: github.event_name != 'pull_request'
+    env:
+      BASEDIR: doc/html
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - run: sudo apt-get install doxygen graphviz
+      - run: doxygen
+      - name: Download deb Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: debs
+          pattern: deb-*
+          merge-multiple: false
+      - run: tree debs
+      - name: Prepare deb directories
+        run: |
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/focal/pool
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/focal/main/{binary-amd64,binary-arm64,binary-armhf}
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/jammy/main/{binary-amd64,binary-arm64,binary-armhf}
+          mv debs/deb-focal-amd64/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
+          mv debs/deb-focal-arm64/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
+          mv debs/deb-focal-armhf/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
+          mv debs/deb-jammy-amd64/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
+          mv debs/deb-jammy-arm64/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
+          mv debs/deb-jammy-armhf/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
+      - name: Generate deb repository
+        working-directory: ${{ env.BASEDIR }}/ubuntu
+        run: |
+          dpkg-scanpackages -m -a amd64 dists/focal/pool > dists/focal/main/binary-amd64/Packages
+          dpkg-scanpackages -m -a arm64 dists/focal/pool > dists/focal/main/binary-arm64/Packages
+          dpkg-scanpackages -m -a armhf dists/focal/pool > dists/focal/main/binary-armhf/Packages
+          dpkg-scanpackages -m -a amd64 dists/jammy/pool > dists/jammy/main/binary-amd64/Packages
+          dpkg-scanpackages -m -a arm64 dists/jammy/pool > dists/jammy/main/binary-arm64/Packages
+          dpkg-scanpackages -m -a armhf dists/jammy/pool > dists/jammy/main/binary-armhf/Packages
+      - name: Download rpm Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: rpms
+          pattern: rpm-*
+          merge-multiple: false
+      - run: tree rpms
+      - name: Setup rpm repo
+        run: |
+          mkdir -p ${{ env.BASEDIR }}/fedora
+          mv rpms/rpm-fedora-39-x86_64/* ${{ env.BASEDIR }}/fedora/
+          mv rpms/rpm-fedora-40-x86_64/* ${{ env.BASEDIR }}/fedora/
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ env.BASEDIR }}
+          clean: true
