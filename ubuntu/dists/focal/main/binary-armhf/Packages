@@ -1,0 +1,92 @@
+Package: aln
+Version: 0.1.0
+Architecture: armhf
+Maintainer: Inho Oh <webispy@gmail.com>
+Installed-Size: 18
+Depends: libaln0 (>= 0.1.0), libc6 (>= 2.4), libglib2.0-0 (>= 2.12.0)
+Filename: dists/focal/pool/aln_0.1.0_armhf.deb
+Size: 4720
+MD5sum: 60908f1b14743a433858b97c8841f196
+SHA1: 7c66b7a386271138e043e51d610b91ee2cab9f43
+SHA256: 9b86766f8cc268f86a80ed293b16f36dbea25207def42076b6ee58ecd1954c40
+Section: libs
+Priority: optional
+Homepage: https://github.com/webispy/aln
+Description: Amazing Lucky Numbers Tool
+ Command line tool for generating and using amazing lucky numbers.
+ This package contains the aln command line tool that utilizes the aln library.
+
+Package: aln-dbg
+Source: aln
+Version: 0.1.0
+Architecture: armhf
+Maintainer: Inho Oh <webispy@gmail.com>
+Installed-Size: 24
+Depends: aln (= 0.1.0)
+Filename: dists/focal/pool/aln-dbg_0.1.0_armhf.deb
+Size: 9028
+MD5sum: 4e727dce240b31ed9b6c8a665c5f05ea
+SHA1: 39c406452a0613d2c89a5b51c2565098c0b79a0e
+SHA256: fb37786819b20c29c7994b251dc274321ac85cbfd65fdb6916855642515a8f30
+Section: debug
+Priority: optional
+Homepage: https://github.com/webispy/aln
+Description: Debugging symbols for aln
+ This package contains the debugging symbols for the aln tool.
+Build-Ids: fbb26c59ffc18f8a94445d530a86e4c82dbb55d5
+
+Package: libaln-dev
+Source: aln
+Version: 0.1.0
+Architecture: armhf
+Maintainer: Inho Oh <webispy@gmail.com>
+Installed-Size: 29
+Depends: libglib2.0-dev
+Filename: dists/focal/pool/libaln-dev_0.1.0_armhf.deb
+Size: 4452
+MD5sum: 3542bade4ea08b0f38eefb9afa081c2f
+SHA1: 1e245a5f167bf8cb4599517df3e66549efe81949
+SHA256: e37572f0062aa2ec7dcbb31d407b45a203ca0a20bd5019862a5dc130020fe408
+Section: libdevel
+Priority: optional
+Homepage: https://github.com/webispy/aln
+Description: Amazing Lucky Numbers Library (development files)
+ A library for generating amazing lucky numbers.
+
+Package: libaln0
+Source: aln
+Version: 0.1.0
+Architecture: armhf
+Maintainer: Inho Oh <webispy@gmail.com>
+Installed-Size: 19
+Depends: libc6 (>= 2.4), libglib2.0-0 (>= 2.24.0)
+Filename: dists/focal/pool/libaln0_0.1.0_armhf.deb
+Size: 4076
+MD5sum: 20668e9e01ccdf6bd9499af86c6091c0
+SHA1: 1d83130d09b9fc721fc086d033b68024a056ecdd
+SHA256: 2e0a53ca0e984f0a5ba1324ba3f16ee06038f4db485fc73e19a8f345e1e7b87e
+Section: libs
+Priority: optional
+Homepage: https://github.com/webispy/aln
+Description: Amazing Lucky Numbers Library
+ A library for generating amazing lucky numbers.
+
+Package: libaln0-dbg
+Source: aln
+Version: 0.1.0
+Architecture: armhf
+Maintainer: Inho Oh <webispy@gmail.com>
+Installed-Size: 23
+Depends: libaln0 (= 0.1.0), aln (= 0.1.0)
+Filename: dists/focal/pool/libaln0-dbg_0.1.0_armhf.deb
+Size: 8984
+MD5sum: 98ac4f5e907f2cc562446e1c940c42db
+SHA1: 98614504ff0fa85fe923beacf3732337179aee52
+SHA256: 4258a40012819f5012c0c171af1ea43c2854c2a683c86978e5dcacb0b3391ef1
+Section: debug
+Priority: optional
+Homepage: https://github.com/webispy/aln
+Description: Debugging symbols for libaln0
+ This package contains the debugging symbols for the aln library.
+Build-Ids: 1da8db68d7f84689735fad61422b6f5c1420282a
+
