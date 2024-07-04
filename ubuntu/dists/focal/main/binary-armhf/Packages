@@ -6,9 +6,9 @@ Installed-Size: 18
 Depends: libaln0 (>= 0.1.0), libc6 (>= 2.4), libglib2.0-0 (>= 2.12.0)
 Filename: dists/focal/pool/aln_0.1.0_armhf.deb
 Size: 4716
-MD5sum: d9a94d6c5d119fbdbe41eb4bc7814436
-SHA1: 25c13783f0d52fea48fcea89efe9bb974c26a7de
-SHA256: 33945f7d4216352878fc411645db13bbb5b617dcd22463e906a779960cf7c601
+MD5sum: d5fae2b7bb92b4781d8ec731aac97c2d
+SHA1: d0882db9a7c079fcfdcfc34324776a8a9432bb31
+SHA256: ee8ac5b345ebac186e41beba409e2cc7e62ccac76c7d21141f8de258dae2dbf8
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -24,16 +24,16 @@ Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 24
 Depends: aln (= 0.1.0)
 Filename: dists/focal/pool/aln-dbg_0.1.0_armhf.deb
-Size: 9032
-MD5sum: 217c8d71883dc98b143c0abedbd92a40
-SHA1: b0f76bb37092feaef5060c13b139fec770b70ad7
-SHA256: 6279b05981654d193c20d47fec8939c5f6fef2aa13838633ce00c958a6922bfe
+Size: 9036
+MD5sum: a81dd4a22c2d1bfbdf19a2c86c04cd65
+SHA1: a693a77c688165a8260ca379bee4751fc57eeb4d
+SHA256: 4feda2ff6bb87857c8d477f02bb8e4611f64a1bc612867882290df82c9652300
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for aln
  This package contains the debugging symbols for the aln tool.
-Build-Ids: b63f1b5aa86bbb46feb885d0a6f108ca701c5a1a
+Build-Ids: 955a38662c0ce7cce3cc1617b01e34ff760a9991
 
 Package: libaln-dev
 Source: aln
@@ -41,12 +41,12 @@ Version: 0.1.0
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
-Depends: libglib2.0-dev
+Depends: libaln0, libglib2.0-dev
 Filename: dists/focal/pool/libaln-dev_0.1.0_armhf.deb
-Size: 4452
-MD5sum: 3542bade4ea08b0f38eefb9afa081c2f
-SHA1: 1e245a5f167bf8cb4599517df3e66549efe81949
-SHA256: e37572f0062aa2ec7dcbb31d407b45a203ca0a20bd5019862a5dc130020fe408
+Size: 4304
+MD5sum: 50af28a3200bc0ac1ebe717361390cfa
+SHA1: ccdaecfd657ca11d3c7b171fbfdb815b8e238d4c
+SHA256: fb056b257cb9b78812a45a3658313535a168eeab7100e4a26be0adf2cdf96c10
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln

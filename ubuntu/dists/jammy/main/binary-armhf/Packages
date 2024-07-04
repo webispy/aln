@@ -41,12 +41,12 @@ Version: 0.1.0
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
-Depends: libglib2.0-dev
+Depends: libaln0, libglib2.0-dev
 Filename: dists/jammy/pool/libaln-dev_0.1.0_armhf.deb
-Size: 4414
-MD5sum: 249f17f2235f549a4c55be05de3fed74
-SHA1: 13b5c01a3b336afefa10bc8ef6018ba93eae2fcc
-SHA256: 8033c9fb588cd7ae3b826f4326a604d3a72da3b4be1e815821ed17eaf5139afa
+Size: 4264
+MD5sum: 19f523299af9de508beb7da7cbb96ddd
+SHA1: 8d8df4ff7d398bc31bf12940fa00a3303d0184b4
+SHA256: aff8a8ebbc7c759c5e84df19dcd9a01644e70e5990c62ae67ff034f97f8c4fde
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln
