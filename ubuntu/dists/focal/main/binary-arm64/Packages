@@ -5,10 +5,10 @@ Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 23
 Depends: libaln0 (>= 0.1.0), libc6 (>= 2.17), libglib2.0-0 (>= 2.12.0)
 Filename: dists/focal/pool/aln_0.1.0_arm64.deb
-Size: 5020
-MD5sum: d12098ba31731b4c22d5e3307518e53f
-SHA1: f38dd1e24483446b61cd3eefce1c95e787835481
-SHA256: 40355e8de88cc0ec66e0296d8969fded55bb757914b9ca2b36e0b54935aff3f9
+Size: 5024
+MD5sum: 79dad2fef4190d3da4e4dd9b3c86718c
+SHA1: 6409602e3918421125fc8ad990186188a71ecdc5
+SHA256: 16d5483c9b9826618adcfe330f5c2169b6dbba395c70ebd4da65d73e10f5b612
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -25,15 +25,15 @@ Installed-Size: 25
 Depends: aln (= 0.1.0)
 Filename: dists/focal/pool/aln-dbg_0.1.0_arm64.deb
 Size: 8956
-MD5sum: 33ba534556ecc4b7d92b64ba90b999b8
-SHA1: f237116e0881af1c53161a6efff66a86202ffa47
-SHA256: 18cd1f5e223b4c839ed59e51f3fafdc9d269590f2271bc8a53ac544f3f7db040
+MD5sum: 1b6d733e6c3c6cb0e6b7536754f9d4d5
+SHA1: f4fdb7667c3512de9bff881fc3c74daa2d1255ed
+SHA256: c3afec5403c59187aa0e6a528407b0faa3dcc3532f735fa2d60b0c87e3921606
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for aln
  This package contains the debugging symbols for the aln tool.
-Build-Ids: b11b1b64c7ad00e5ed7774c021b1c5de14263a86
+Build-Ids: c5431e6e969c3b371c69023e5c2bafea923f1f1e
 
 Package: libaln-dev
 Source: aln
