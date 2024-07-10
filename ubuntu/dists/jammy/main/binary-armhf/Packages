@@ -43,10 +43,10 @@ Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
 Depends: libaln0, libglib2.0-dev
 Filename: dists/jammy/pool/libaln-dev_0.1.0_armhf.deb
-Size: 4264
-MD5sum: 19f523299af9de508beb7da7cbb96ddd
-SHA1: 8d8df4ff7d398bc31bf12940fa00a3303d0184b4
-SHA256: aff8a8ebbc7c759c5e84df19dcd9a01644e70e5990c62ae67ff034f97f8c4fde
+Size: 4266
+MD5sum: 7f2cf03daed6932ab4381470c5d9769a
+SHA1: b488fff4fd08d7a28369400680d314f3a2a8e945
+SHA256: 2fb4bd15e87fda38693e88ef745232fac4fab2844e0970a4684d9a8762b839d3
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln
