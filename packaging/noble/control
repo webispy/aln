@@ -16,7 +16,7 @@ Description: Amazing Lucky Numbers Library
 Package: libaln-dev
 Architecture: any
 Section: libdevel
-Depends: ${shlibs:Depends}, ${misc:Depends}, libaln0, libglib2.0-dev
+Depends: ${shlibs:Depends}, ${misc:Depends}, libaln0 (= ${binary:Version}), libglib2.0-dev
 Description: Amazing Lucky Numbers Library (development files)
  A library for generating amazing lucky numbers.
 

@@ -90,7 +90,7 @@ jobs:
     needs: [build]
     strategy:
       matrix:
-        dist: [jammy, focal]
+        dist: [noble, jammy, focal]
         host: [armhf, arm64, amd64]
       fail-fast: false
     steps:
@@ -101,6 +101,8 @@ jobs:
       - run: cp -a packaging/${{ matrix.dist }} debian
         working-directory: src
       - run: sudo apt update
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
       - run: sudo apt install -y sbuild ubuntu-dev-tools debhelper
       - run: sudo sbuild-adduser $USER
       - name: Setup tmpfs overlay
@@ -214,12 +216,17 @@ jobs:
           mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/focal/main/{binary-amd64,binary-arm64,binary-armhf}
           mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool
           mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/jammy/main/{binary-amd64,binary-arm64,binary-armhf}
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/noble/pool
+          mkdir -p ${{ env.BASEDIR }}/ubuntu/dists/noble/main/{binary-amd64,binary-arm64,binary-armhf}
           mv debs/deb-focal-amd64/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
           mv debs/deb-focal-arm64/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
           mv debs/deb-focal-armhf/* ${{ env.BASEDIR }}/ubuntu/dists/focal/pool/
           mv debs/deb-jammy-amd64/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
           mv debs/deb-jammy-arm64/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
           mv debs/deb-jammy-armhf/* ${{ env.BASEDIR }}/ubuntu/dists/jammy/pool/
+          mv debs/deb-noble-amd64/* ${{ env.BASEDIR }}/ubuntu/dists/noble/pool/
+          mv debs/deb-noble-arm64/* ${{ env.BASEDIR }}/ubuntu/dists/noble/pool/
+          mv debs/deb-noble-armhf/* ${{ env.BASEDIR }}/ubuntu/dists/noble/pool/
       - name: Generate deb repository
         working-directory: ${{ env.BASEDIR }}/ubuntu
         run: |
@@ -229,6 +236,9 @@ jobs:
           dpkg-scanpackages -m -a amd64 dists/jammy/pool > dists/jammy/main/binary-amd64/Packages
           dpkg-scanpackages -m -a arm64 dists/jammy/pool > dists/jammy/main/binary-arm64/Packages
           dpkg-scanpackages -m -a armhf dists/jammy/pool > dists/jammy/main/binary-armhf/Packages
+          dpkg-scanpackages -m -a amd64 dists/noble/pool > dists/noble/main/binary-amd64/Packages
+          dpkg-scanpackages -m -a arm64 dists/noble/pool > dists/noble/main/binary-arm64/Packages
+          dpkg-scanpackages -m -a armhf dists/noble/pool > dists/noble/main/binary-armhf/Packages
       - name: Download rpm Artifacts
         uses: actions/download-artifact@v4
         with:
