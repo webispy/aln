@@ -1,10 +1,10 @@
-libdir=@CMAKE_INSTALL_FULL_LIBDIR@
-includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@/aln
-version=@VERSION@
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@libdir@
+includedir=@includedir@
 
 Name: aln
 Description: Library for Amazing Lucky Number generation
-Version: ${version}
+Version: @VERSION@
 Requires: glib-2.0
 Libs: -L${libdir} -laln
 Cflags: -I${includedir}

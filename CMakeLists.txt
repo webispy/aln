@@ -32,6 +32,12 @@ include_directories(include)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/aln/)
 
 # pkg-config file
+if(NOT DEFINED CMAKE_LIBRARY_ARCHITECTURE)
+    set(libdir "\${prefix}/lib")
+else()
+    set(libdir "\${prefix}/lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+endif()
+set(includedir "\${prefix}/include/aln")
 configure_file(aln.pc.in ${PROJECT_BINARY_DIR}/aln.pc @ONLY)
 install(FILES ${PROJECT_BINARY_DIR}/aln.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig/)
 
