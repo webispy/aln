@@ -6,9 +6,9 @@ Installed-Size: 27
 Depends: libaln0 (>= 0.1.0), libc6 (>= 2.4), libglib2.0-0 (>= 2.12.0)
 Filename: dists/focal/pool/aln_0.1.0_amd64.deb
 Size: 5144
-MD5sum: 2a69ce4beb48d3dd5e8e7726b0316af2
-SHA1: ba36357087732fc0b4d59e9fb68e1e87adc950b0
-SHA256: 739f0962af0ba6023161ec2edcaace7b63452b7148051a64dea4bfc56134ea1d
+MD5sum: 2f5189414350e81a94f96711b9f08440
+SHA1: b10ad7ce04833e049c42371a7f4f67a3584ef756
+SHA256: 7283823b76f2d44a1010c16239870a2d5fdcf5e8afd31d98ef662da0b10f1102
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -24,16 +24,16 @@ Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 25
 Depends: aln (= 0.1.0)
 Filename: dists/focal/pool/aln-dbg_0.1.0_amd64.deb
-Size: 8892
-MD5sum: 7b09a5648e1416478d431aab919c9854
-SHA1: 27f77665ca918ca0302fd95bab04b9dd4696fcf5
-SHA256: 7f10f9c321a4f8c2a5191d1c18aecfce97ca6697d6eb16a23b831c6a32097bb8
+Size: 8888
+MD5sum: efd8cba33f2e332144be3dc34f502491
+SHA1: aa0b3d799562b1e29a1521ac410ae80788664dda
+SHA256: 75abf21484689e634509131ff58290791f1a9f6fc120598809239acd88aec49b
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for aln
  This package contains the debugging symbols for the aln tool.
-Build-Ids: c763806cecc5fc3c7ed9068b72abecde1970f8d0
+Build-Ids: 66047acb1826144e2b59f34b0bcc42f0d830b957
 
 Package: libaln-dev
 Source: aln
@@ -41,12 +41,12 @@ Version: 0.1.0
 Architecture: amd64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
-Depends: libaln0, libglib2.0-dev
+Depends: libaln0 (= 0.1.0), libglib2.0-dev
 Filename: dists/focal/pool/libaln-dev_0.1.0_amd64.deb
-Size: 4296
-MD5sum: 59f4bbf454fd97c52fea415214bbd1c1
-SHA1: ff6de18bf671a3765a9a95793201660d10a90b6f
-SHA256: def7ca31a566988cef2df310b738c53a55fd11d187bb2d6494e4762369a11593
+Size: 4300
+MD5sum: 64ad0314fd145db8dbfb17770fd9e8a4
+SHA1: f5db0500ca4df76f543e36c1ea991a924ef0d21c
+SHA256: de72baf2f592a230cc9f012ec4710efcedeead18c918732c1e8d6268eb892b43
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln
