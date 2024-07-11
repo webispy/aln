@@ -1,5 +1,5 @@
 Name:           aln
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Amazing Lucky Numbers - A library and tool for generating lucky numbers
 
@@ -65,5 +65,8 @@ install -m 644 doc/man/man3/* %{buildroot}%{_mandir}/man3/
 %{_mandir}/man3/aln_*.3*
 
 %changelog
+* Thu Jul 11 2024 Inho Oh <webispy@gmail.com> - 0.1.1
+- fix aln.pc.in
+- fix packaging
 * Tue Jul 02 2024 Inho Oh <webispy@gmail.com> - 0.1.0-1
 - Initial package
