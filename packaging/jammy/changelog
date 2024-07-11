@@ -1,3 +1,10 @@
+aln (0.1.1) jammy; urgency=medium
+
+  * fix aln.pc.in
+  * fix packaging
+
+ -- Inho Oh <webispy@gmail.com>  Thu, 11 Jul 2024 18:30:00 +0900
+
 aln (0.1.0) jammy; urgency=medium
 
   * Initial release.
