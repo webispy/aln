@@ -1,14 +1,14 @@
 Package: aln
-Version: 0.1.1
+Version: 0.1.1-1~noble
 Architecture: arm64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 79
 Depends: libaln0 (>= 0.1.1), libc6 (>= 2.34), libglib2.0-0t64 (>= 2.12.0), libglib2.0-0
-Filename: dists/noble/pool/aln_0.1.1_arm64.deb
-Size: 5116
-MD5sum: 906baff4b53d6de3c75aa8ea54cbde25
-SHA1: b82649d04029fa5dd8e3bc835f61e41ee3dfac74
-SHA256: 0cc094643fe749972349b1a8dd46b267bbe0c096557c3507a3999f4cad541527
+Filename: dists/noble/pool/aln_0.1.1-1~noble_arm64.deb
+Size: 5124
+MD5sum: 04ae3f6127fcf8e658975b189f0cbcbf
+SHA1: 154817672dbd8df4a6db9309a5d06059b664c700
+SHA256: a87bf0fed92d70c727456e8add7166e672d648b986b925c950f68c182b44580a
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -18,35 +18,35 @@ Description: Amazing Lucky Numbers Tool
 
 Package: aln-dbg
 Source: aln
-Version: 0.1.1
+Version: 0.1.1-1~noble
 Architecture: arm64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 24
-Depends: aln (= 0.1.1)
-Filename: dists/noble/pool/aln-dbg_0.1.1_arm64.deb
-Size: 6468
-MD5sum: d098e44a413f181fbbbf245a41fc7eb2
-SHA1: 261e6c39a4793553bbeb61a2d199a23986a33015
-SHA256: 5e283ca305d62da467ce2fea1581afdc00ebf76e5c648e9fd50a5457925d5634
+Depends: aln (= 0.1.1-1~noble)
+Filename: dists/noble/pool/aln-dbg_0.1.1-1~noble_arm64.deb
+Size: 6500
+MD5sum: a40205876ebcf42ad01aaa4857774594
+SHA1: d652ed9723a1967957b60f0a9dd27a74cf5c7e45
+SHA256: f5c42c4fe3ce9ad67d4f3382c85ad68b20953e0ec9e13e10276e999c01f87076
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for aln
  This package contains the debugging symbols for the aln tool.
-Build-Ids: 789188947cca733835fa724171bc01d0cb145b6a
+Build-Ids: f87e4df59b2ca98a74306bb4bdb4adfaaec3b158
 
 Package: libaln-dev
 Source: aln
-Version: 0.1.1
+Version: 0.1.1-1~noble
 Architecture: arm64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
-Depends: libaln0 (= 0.1.1), libglib2.0-dev
-Filename: dists/noble/pool/libaln-dev_0.1.1_arm64.deb
-Size: 4250
-MD5sum: 20faba32dc8a5a3c728ca89ed394c842
-SHA1: c058297b9fe0c4f042ce4af2961dcf03846b5662
-SHA256: f0be48f13aad95b2b20ef3d6e71239b72648aab65283993e27b59f927e8b6c98
+Depends: libaln0 (= 0.1.1-1~noble), libglib2.0-dev
+Filename: dists/noble/pool/libaln-dev_0.1.1-1~noble_arm64.deb
+Size: 4264
+MD5sum: 3e43b1164e9b5b3d74bb9478504de2db
+SHA1: ba89efdfe0ec6e9aa130a2131cc7fe4d5edd450a
+SHA256: 434373b4ff9122e6dee3b482fd1f0a4031db462e2c29e6f5454bbfef3ce9e369
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -55,16 +55,16 @@ Description: Amazing Lucky Numbers Library (development files)
 
 Package: libaln0
 Source: aln
-Version: 0.1.1
+Version: 0.1.1-1~noble
 Architecture: arm64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 79
 Depends: libc6 (>= 2.17), libglib2.0-0t64 (>= 2.24.0), libglib2.0-0
-Filename: dists/noble/pool/libaln0_0.1.1_arm64.deb
-Size: 4414
-MD5sum: 87678f4a66fd98109de95da8345a485e
-SHA1: cb4803e935957cb4fc863a0cfd5a9a6470442f8a
-SHA256: 18a56997b61517308766f89225c00c29827b8c58967421854cc4bf0bf7b9fb6c
+Filename: dists/noble/pool/libaln0_0.1.1-1~noble_arm64.deb
+Size: 4406
+MD5sum: 4bcd39b47ef84c4e9b4e138637f4f9c1
+SHA1: 9b79854da936d15be394a8ff515acbeb04e4964e
+SHA256: d3cccb6cdd2ed281d4f23fcc7c3fa57e186508f03366d98addfd2162c6aec396
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -73,20 +73,20 @@ Description: Amazing Lucky Numbers Library
 
 Package: libaln0-dbg
 Source: aln
-Version: 0.1.1
+Version: 0.1.1-1~noble
 Architecture: arm64
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 24
-Depends: libaln0 (= 0.1.1), aln (= 0.1.1)
-Filename: dists/noble/pool/libaln0-dbg_0.1.1_arm64.deb
-Size: 7258
-MD5sum: 504270afa9cbc11ac651cef5d4e6c8e4
-SHA1: 97873e8d57d98f94e4a605142e1a74dcd99dc04c
-SHA256: 9c06ad987e9636f617a776cc7e461223a9384a0e11adf986d22a7c8cfe23a9d3
+Depends: libaln0 (= 0.1.1-1~noble), aln (= 0.1.1-1~noble)
+Filename: dists/noble/pool/libaln0-dbg_0.1.1-1~noble_arm64.deb
+Size: 7274
+MD5sum: 0b0d908221e223e0eee51a6c89752d06
+SHA1: 88a7e56d4c35e33e66d8e48f16e5fb09698b9a8d
+SHA256: 2ec8626bb774911268999f9f37064d8bfeb610dc46198995633347e5feee9575
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for libaln0
  This package contains the debugging symbols for the aln library.
-Build-Ids: c73feb311f4e70340dd8c7872f11a0d111052ec9
+Build-Ids: 55f23403eddeef9f07ad49d0a1715ffac310af4d
 
