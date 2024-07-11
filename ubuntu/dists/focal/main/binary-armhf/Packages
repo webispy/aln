@@ -1,14 +1,14 @@
 Package: aln
-Version: 0.1.0
+Version: 0.1.1
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 18
-Depends: libaln0 (>= 0.1.0), libc6 (>= 2.4), libglib2.0-0 (>= 2.12.0)
-Filename: dists/focal/pool/aln_0.1.0_armhf.deb
-Size: 4716
-MD5sum: d80bb0537d48e77306a058c085a1cd91
-SHA1: d65291b69cb66f869d0ba70373ceb9bd2fab99ad
-SHA256: 86bc1bdb7a923523ef502a56d7890a19941526cfae6ff10ed13669cee5716d68
+Depends: libaln0 (>= 0.1.1), libc6 (>= 2.4), libglib2.0-0 (>= 2.12.0)
+Filename: dists/focal/pool/aln_0.1.1_armhf.deb
+Size: 4728
+MD5sum: be27451c3231cde2731041738868cee5
+SHA1: 8d927d7041b8d780b50e9e2779076c0176c09ba6
+SHA256: d709e2517696f61456a09961b055f3010bd6f28359e066c1b82b404ae13ca229
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -18,35 +18,35 @@ Description: Amazing Lucky Numbers Tool
 
 Package: aln-dbg
 Source: aln
-Version: 0.1.0
+Version: 0.1.1
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 24
-Depends: aln (= 0.1.0)
-Filename: dists/focal/pool/aln-dbg_0.1.0_armhf.deb
-Size: 9036
-MD5sum: 23608a7b44733bdbfc6036f9a7fb232b
-SHA1: 06349efcf5ae2e94efefe9c8e13d9237306b3703
-SHA256: 7e83d947e4cb53a43c215b5f6ccda5327925328229933af7822f50cc450e3399
+Depends: aln (= 0.1.1)
+Filename: dists/focal/pool/aln-dbg_0.1.1_armhf.deb
+Size: 9040
+MD5sum: 3a90419fd38442777e66ff33b91242f6
+SHA1: 86c3dfa54214f65c0555028e482dccbecede0552
+SHA256: b96b6258b13affea4f2838836c134e0aad203bebd34d193f0c7417f78ebf0f8d
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
 Description: Debugging symbols for aln
  This package contains the debugging symbols for the aln tool.
-Build-Ids: 5c21751104eec84c523bafbc3dcd130a16551fca
+Build-Ids: 66301b1f1e22e4583ac5e9541af22dbcf7a8c1fb
 
 Package: libaln-dev
 Source: aln
-Version: 0.1.0
+Version: 0.1.1
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 29
-Depends: libaln0 (= 0.1.0), libglib2.0-dev
-Filename: dists/focal/pool/libaln-dev_0.1.0_armhf.deb
-Size: 4304
-MD5sum: 44c550d925c6b9649a71abb33f3c9e65
-SHA1: 3d190c43ce25b585ec06b4e276a5de990ecae5e4
-SHA256: f05beae1f41cd2b7265769decf75bf8a41f593af35ac2eee85f301b252754929
+Depends: libaln0 (= 0.1.1), libglib2.0-dev
+Filename: dists/focal/pool/libaln-dev_0.1.1_armhf.deb
+Size: 4308
+MD5sum: 2da502b38f43a5118677d5168741fae1
+SHA1: 71e6ce3cc10ea87efa7d3fc939291915042f0de3
+SHA256: c1fbcc3d0e526e652fac015e8c2851e57538b4f634bccebe4b7526fc8832e6be
 Section: libdevel
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -55,16 +55,16 @@ Description: Amazing Lucky Numbers Library (development files)
 
 Package: libaln0
 Source: aln
-Version: 0.1.0
+Version: 0.1.1
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 19
 Depends: libc6 (>= 2.4), libglib2.0-0 (>= 2.24.0)
-Filename: dists/focal/pool/libaln0_0.1.0_armhf.deb
-Size: 4076
-MD5sum: 20668e9e01ccdf6bd9499af86c6091c0
-SHA1: 1d83130d09b9fc721fc086d033b68024a056ecdd
-SHA256: 2e0a53ca0e984f0a5ba1324ba3f16ee06038f4db485fc73e19a8f345e1e7b87e
+Filename: dists/focal/pool/libaln0_0.1.1_armhf.deb
+Size: 4132
+MD5sum: fa6a90c4df24966d9f329faab38b3b8b
+SHA1: ee8d1ee1fd8669d9cf1db92377e2e743ae87a053
+SHA256: 4dbe2cb0106ef123120c4cd021a2ce091ca820472d08085af5f8e86c73f1240f
 Section: libs
 Priority: optional
 Homepage: https://github.com/webispy/aln
@@ -73,16 +73,16 @@ Description: Amazing Lucky Numbers Library
 
 Package: libaln0-dbg
 Source: aln
-Version: 0.1.0
+Version: 0.1.1
 Architecture: armhf
 Maintainer: Inho Oh <webispy@gmail.com>
 Installed-Size: 23
-Depends: libaln0 (= 0.1.0), aln (= 0.1.0)
-Filename: dists/focal/pool/libaln0-dbg_0.1.0_armhf.deb
+Depends: libaln0 (= 0.1.1), aln (= 0.1.1)
+Filename: dists/focal/pool/libaln0-dbg_0.1.1_armhf.deb
 Size: 8984
-MD5sum: 98ac4f5e907f2cc562446e1c940c42db
-SHA1: 98614504ff0fa85fe923beacf3732337179aee52
-SHA256: 4258a40012819f5012c0c171af1ea43c2854c2a683c86978e5dcacb0b3391ef1
+MD5sum: b6fa6384959ed733a6856db67116a499
+SHA1: c04c96ec39f3986298b4c5f92243768e2ede7d24
+SHA256: 13ef140319b950500ab6bd161c2a082a53bff2133a566b8212f00d2fe0f51755
 Section: debug
 Priority: optional
 Homepage: https://github.com/webispy/aln
