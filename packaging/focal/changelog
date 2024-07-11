@@ -1,4 +1,4 @@
-aln (0.1.1) focal; urgency=medium
+aln (0.1.1-1~focal) focal; urgency=medium
 
   * fix aln.pc.in
   * fix packaging

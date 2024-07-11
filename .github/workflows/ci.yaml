@@ -63,7 +63,7 @@ jobs:
       - run: echo "DISTRO_NAME=$(lsb_release -c | awk '{print $2}')" >> $GITHUB_ENV
       - run: cp -a packaging/$DISTRO_NAME debian
         working-directory: src
-      - run: gbp buildpackage -uc -us --git-ignore-branch
+      - run: gbp buildpackage -uc -us --git-ignore-branch --git-upstream-tree=HEAD
         working-directory: src
         if: github.event_name == 'pull_request'
       - run: gbp buildpackage -uc -us
