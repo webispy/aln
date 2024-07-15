@@ -43,18 +43,18 @@ find doc/man/man3 -type f ! -name 'aln*' -exec rm -f {} \;
 
 # Install man pages
 mkdir -p %{buildroot}%{_mandir}/{man1,man3}
-cp -a tool/aln.1 %{buildroot}%{_mandir}/man1/
+install -m 644 tool/aln.1 %{buildroot}%{_mandir}/man1/
 install -m 644 doc/man/man3/* %{buildroot}%{_mandir}/man3/
 
 %check
 %ctest
 
 %files
+%license LICENSE
 %{_bindir}/aln
 %{_mandir}/man1/aln.1*
 
 %files libs
-%license LICENSE
 %{_libdir}/libaln.so.*
 
 %files devel
