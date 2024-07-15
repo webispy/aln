@@ -51,7 +51,7 @@ jobs:
           name: files
           path: ${{ env.TARGETDIR }}
 
-  test_deb_gbp:
+  test_deb_dpkg_buildpackage:
     runs-on: ubuntu-latest
     needs: [clang_format, clang_tidy]
     steps:
@@ -59,16 +59,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: src
-      - run: sudo apt install -y libglib2.0-dev doxygen git-buildpackage debhelper cmake
+      - run: sudo apt install -y libglib2.0-dev doxygen debhelper cmake
       - run: echo "DISTRO_NAME=$(lsb_release -c | awk '{print $2}')" >> $GITHUB_ENV
       - run: cp -a packaging/$DISTRO_NAME debian
         working-directory: src
-      - run: gbp buildpackage -uc -us --git-ignore-branch --git-upstream-tree=HEAD
+      - run: dpkg-buildpackage -uc -us
         working-directory: src
-        if: github.event_name == 'pull_request'
-      - run: gbp buildpackage -uc -us
-        working-directory: src
-        if: github.event_name != 'pull_request'
       - run: tree
 
   test_rpm_rpmbuild:
